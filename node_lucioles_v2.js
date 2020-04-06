@@ -28,7 +28,8 @@ app.use(function(request, response, next) { //Pour eviter les problemes de CORS/
 // MongoDB
 var mongodb = require('mongodb');
 const mongoBaseName = "lucioles"                   // Nom de la base
-const uri = 'mongodb://localhost:27017/'; //URL de connection
+//const uri = 'mongodb://localhost:27017/'; //URL de connection
+const uri = 'mongodb://heroku:if@9FyQ8GtR6pm@iot-shard-00-01-goltu.mongodb.net:27017/lucioles?retryWrites=true&w=majority';
 //const uri = 'mongodb://10.9.128.189:27017/'; //URL de connection		
 //const uri = "mongodb+srv://menez:mettrelevotre@cluster0-x0zyf.mongodb.net/test?retryWrites=true&w=majority";
 
@@ -57,8 +58,9 @@ client.connect(function(err,  mongodbClient){
 
     //===============================================
     // Connection au broker MQTT distant
-    //
-	const mqtt_url = 'http://127.0.0.1';
+	//
+	const mqtt_url = '134.59.131.45:1883';
+	//const mqtt_url = 'http://127.0.0.1';
 	//const mqtt_url = 'http://192.168.1.100:1883' ///134.59.131.45:1883'
     //const mqtt_url = 'http://broker.hivemq.com'
     var client_mqtt = mqtt.connect(mqtt_url);
