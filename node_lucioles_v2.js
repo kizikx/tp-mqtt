@@ -154,6 +154,19 @@ client.connect(function(err,  mongodbClient){
     // Acc�s par le Node a la page HTML affichant les charts
     app.get('/', function (req, res) {
 	res.sendFile(path.join(__dirname + '/ui_lucioles.html'));
+	});
+	
+	app.get('/esp/ping/:who', function(req, res) {
+        who = req.params.who;
+
+        client_mqtt.publish('luciolesbleues/ping', JSON.stringify({
+            who,
+        }));
+
+        res.status(200);
+        res.json({
+            message: 'ok',
+        });
     });
 
     // Function for answering GET request on this node server ...
@@ -184,8 +197,7 @@ client.connect(function(err,  mongodbClient){
 	dbo.collection(key).find({who:wh}).sort({_id:-1}).limit(nb).toArray(function(err, result) {
 	    if (err) throw err;
 	    console.log('get on ', key);
-	    console.log(result);
-	    res.json(result.reverse()); // This is the response.
+		res.json(result.reverse()); // This is the response.
 	    console.log('end find');
 	});
 	console.log('end app.get');
