@@ -2,7 +2,7 @@
   "name": "tp-mqtt",
   "version": "1.0.0",
   "description": "",
-  "main": "node_lucioles_v0.js",
+  "main": "node_lucioles_v2.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/kizikx/tp-mqtt/issues"
   },
-  "homepage": "https://github.com/kizikx/tp-mqtt#readme"
+  "homepage": "https://github.com/kizikx/tp-mqtt#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongodb": "^3.5.5",
+    "mqtt": "^3.0.0"
+  }
 }

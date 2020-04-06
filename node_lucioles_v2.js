@@ -6,8 +6,8 @@ var path = require('path');
 
 const mqtt = require('mqtt')
 // Topics MQTT
-const TOPIC_LIGHT = 'sensors/light'
-const TOPIC_TEMP  = 'sensors/temp'
+const TOPIC_LIGHT = 'luciolesbleues/sensors/light'
+const TOPIC_TEMP  = 'luciolesbleues/sensors/temp'
 
 // express 
 const express = require('express');
@@ -29,7 +29,7 @@ app.use(function(request, response, next) { //Pour eviter les problemes de CORS/
 var mongodb = require('mongodb');
 const mongoBaseName = "lucioles"                   // Nom de la base
 //const uri = 'mongodb://localhost:27017/'; //URL de connection
-const uri = 'mongodb://heroku:if@9FyQ8GtR6pm@iot-shard-00-01-goltu.mongodb.net:27017/lucioles?retryWrites=true&w=majority';
+const uri = 'mongodb+srv://heroku:if\@9FyQ8GtR6pm@iot-goltu.mongodb.net/lucioles?retryWrites=true&w=majority';
 //const uri = 'mongodb://10.9.128.189:27017/'; //URL de connection		
 //const uri = "mongodb+srv://menez:mettrelevotre@cluster0-x0zyf.mongodb.net/test?retryWrites=true&w=majority";
 
