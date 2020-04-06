@@ -1,0 +1,19 @@
+{
+  "name": "tp-mqtt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "node_lucioles_v0.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kizikx/tp-mqtt.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kizikx/tp-mqtt/issues"
+  },
+  "homepage": "https://github.com/kizikx/tp-mqtt#readme"
+}
