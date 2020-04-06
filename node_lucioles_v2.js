@@ -45,7 +45,7 @@ client.connect(function(err,  mongodbClient){
     // Get a connection to the DB "lucioles" or create
     //
     var dbo = client.db(mongoBaseName);
-   /* 
+    
     dbo.dropCollection("temp", function(err, delOK) {
 	if (err) console.error(err);
 	if (delOK) console.log("Collection deleted");
@@ -54,7 +54,7 @@ client.connect(function(err,  mongodbClient){
     dbo.dropCollection("light", function(err, delOK) {
 	if (err) console.error(err);
 	if (delOK) console.log("Collection deleted");
-    });*/
+    });
 
     //===============================================
     // Connection au broker MQTT distant
@@ -195,6 +195,6 @@ client.connect(function(err,  mongodbClient){
 
 
 // L'application est accessible sur le port 3000
-app.listen(80, () => {
+app.listen(3000, () => {
     console.log('Server listening on port 3000');
 });
