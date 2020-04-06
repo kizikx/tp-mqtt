@@ -45,7 +45,7 @@ client.connect(function(err,  mongodbClient){
     // Get a connection to the DB "lucioles" or create
     //
     var dbo = client.db(mongoBaseName);
-    
+   /* 
     dbo.dropCollection("temp", function(err, delOK) {
 	if (err) console.error(err);
 	if (delOK) console.log("Collection deleted");
@@ -55,7 +55,7 @@ client.connect(function(err,  mongodbClient){
 	if (err) console.error(err);
 	if (delOK) console.log("Collection deleted");
     });
-
+*/
     //===============================================
     // Connection au broker MQTT distant
 	//
