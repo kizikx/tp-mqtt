@@ -115,7 +115,7 @@ window.onload = function init() {
 	//node_url = 'http://localhost:3000'
 	//node_url = 'http://10.9.128.189:3000'
    // node_url = 'http://192.168.0.2:3000'
-    node_url = 'https://mqtt-lucioles.herokuapp.com:3000/'
+    node_url = 'http://62.210.139.84:3000'
 
 	//https://openclassrooms.com/fr/courses/1567926-un-site-web-dynamique-avec-jquery/1569648-le-fonctionnement-de-ajax
         $.ajax({
