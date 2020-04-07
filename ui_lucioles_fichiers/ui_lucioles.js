@@ -19,13 +19,11 @@ window.onload = function init() {
         }
     }
 
-    function replaceData(data){
-        for(i=0;i<data.length;i++){
-            $("#num"+i).text("Esp"+i);
-            $("#mac"+i).text(data[i].mac);
-            $("#temp"+i).text(data[i].temp);
-            $("#light"+i).text(data[i].light);
-        }
+    function replaceData(data, index){
+            $("#num"+index).text("Esp"+index);
+            $("#mac"+index).text(data.mac);
+            $("#temp"+index).text(data.temp);
+            $("#light"+index).text(data.light);
     }
     
     //=== Initialisation des traces/charts de la page html
@@ -153,16 +151,19 @@ window.onload = function init() {
 		    //listeData.push([Date.now(),element.value]);
                 });
                 serie.setData(listeData); //serie.redraw();
-                console.log(wh);
                 let pos = searchMac(wh);
                 let newObject = myData[pos];
-                console.log(newObject);
                 if(topic === "temp"){
-                    newObject.temp=topic + serie.data[serie.data.length - 1].y;
+                    newObject.temp=serie.data[serie.data.length - 1].y;
                 }
-                else{
-                    newObject.temp=topic + serie.data[serie.data.length - 1].y;
+                else if(topic === "light"){
+                    newObject.light=serie.data[serie.data.length - 1].y;
                 }
+                displayEsp(myData);
+                for(let z=0;myData.length;z++){
+                    replaceData(myData[z], z);
+                }
+                
             },
             error: function (resultat, statut, erreur) {
             },
@@ -208,15 +209,24 @@ window.onload = function init() {
     for (var i = 0; i < which_esps.length; i++) {
 	process_esp(which_esps, i)
     }
-    displayEsp(myData);
-    replaceData(myData);
 };
 
 function displayEsp(data){
-    let table = '<table class="table"><thead><tr><th scope="col">Esp</th><th scope="col">Mac</th><th scope="col">Temp</th><th scope="col">Light</th><th scope="col">Ping</th></tr></thead><tbody>';
+    console.log(data);
+    let table = '<table class="table">'+
+    '<thead>'+
+    '<tr>'+
+    '<th scope="col">Esp</th>'+
+    '<th scope="col">Mac</th>'+
+    '<th scope="col">Temp</th>'+
+    '<th scope="col">Light</th>'+
+    '<th scope="col">Ping</th>'+
+    '</tr>'+
+    '</thead>'+
+    '<tbody>';
     for(let i=0;i<data.length;i++){
         table += '<tr>'+
-        '<th id="num'+i+'"> scope="row"></th>'+
+        '<th id="num'+i+'" scope="row"></th>'+
         '<td id="mac'+i+'"></td>'+
         '<td id="temp'+i+'"></td>'+
         '<td id="light'+i+'"></td>'+
@@ -224,5 +234,5 @@ function displayEsp(data){
       '</tr>';
     }
     table += '</tbody></table>';
-    $('#toto').append(table);
+    $('#toto').html(table);
 }
