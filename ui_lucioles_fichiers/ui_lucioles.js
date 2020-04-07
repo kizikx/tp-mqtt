@@ -170,7 +170,7 @@ window.onload = function init() {
             }
         });
         displayEsp(myData);
-        replaceData(myData);
+     //   replaceData(myData);
     }
 
     //=== Installation de la periodicite des requetes GET=============
