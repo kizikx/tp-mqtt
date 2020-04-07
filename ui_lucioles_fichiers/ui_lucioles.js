@@ -24,6 +24,9 @@ window.onload = function init() {
             $("#mac"+index).text(data.mac);
             $("#temp"+index).text(data.temp);
             $("#light"+index).text(data.light);
+            $("#btn"+index).click(function(){
+                ping(data.mac);
+            })
     }
     
     //=== Initialisation des traces/charts de la page html
@@ -230,9 +233,23 @@ function displayEsp(data){
         '<td id="mac'+i+'"></td>'+
         '<td id="temp'+i+'"></td>'+
         '<td id="light'+i+'"></td>'+
-        '<td><button>ping</button></td>'+
+        '<td><button id="btn'+i+'">ping</button></td>'+
       '</tr>';
     }
     table += '</tbody></table>';
     $('#toto').html(table);
+}
+
+function ping(mac){
+    $.ajax({
+        url: node_url.concat("/esp/ping/"+mac), // URL to "GET" : /esp/temp ou /esp/light
+        type: 'GET',
+        headers: { Accept: "application/json", },
+        success: function (resultat, statut) { // Anonymous function on success            
+        },
+        error: function (resultat, statut, erreur) {
+        },
+        complete: function (resultat, statut) {
+        }
+    });
 }
