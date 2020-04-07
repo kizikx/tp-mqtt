@@ -169,8 +169,6 @@ window.onload = function init() {
             complete: function (resultat, statut) {
             }
         });
-        displayEsp(myData);
-     //   replaceData(myData);
     }
 
     //=== Installation de la periodicite des requetes GET=============
@@ -210,6 +208,8 @@ window.onload = function init() {
     for (var i = 0; i < which_esps.length; i++) {
 	process_esp(which_esps, i)
     }
+    displayEsp(myData);
+    replaceData(myData);
 };
 
 function displayEsp(data){
