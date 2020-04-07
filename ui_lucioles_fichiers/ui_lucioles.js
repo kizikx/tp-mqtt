@@ -5,7 +5,29 @@
 // RMQ : Manipulation naive (debutant) de Javascript
 // 
 window.onload = function init() {
+    let myData = [];
+    macList = [];
 
+    function searchMac(mac){
+        const index = macList.indexOf(mac);
+        if (index == -1) {
+        macList.push(mac);
+        myData.push({mac, temp: 0, light: 0});
+        return macList.length - 1;
+        } else {
+        return index;
+        }
+    }
+
+    function replaceData(data){
+        for(i=0;i<data.length;i++){
+            $("#num"+i).text("Esp"+i);
+            $("#mac"+i).text(data[i].mac);
+            $("#temp"+i).text(data[i].temp);
+            $("#light"+i).text(data[i].light);
+        }
+    }
+    
     //=== Initialisation des traces/charts de la page html
 
     // Apply time settings globally
@@ -116,6 +138,7 @@ window.onload = function init() {
 	//node_url = 'http://10.9.128.189:3000'
    // node_url = 'http://192.168.0.2:3000'
     node_url = 'http://62.210.139.84:3000'
+    let topic = path_on_node.split("/")[2];
 
 	//https://openclassrooms.com/fr/courses/1567926-un-site-web-dynamique-avec-jquery/1569648-le-fonctionnement-de-ajax
         $.ajax({
@@ -126,16 +149,28 @@ window.onload = function init() {
             success: function (resultat, statut) { // Anonymous function on success
                 let listeData = [];
                 resultat.forEach(function (element) {
-		    listeData.push([Date.parse(element.date),element.value]);
+            listeData.push([Date.parse(element.date),element.value]);
 		    //listeData.push([Date.now(),element.value]);
                 });
                 serie.setData(listeData); //serie.redraw();
+                console.log(wh);
+                let pos = searchMac(wh);
+                let newObject = myData[pos];
+                console.log(newObject);
+                if(topic === "temp"){
+                    newObject.temp=topic + serie.data[serie.data.length - 1].y;
+                }
+                else{
+                    newObject.temp=topic + serie.data[serie.data.length - 1].y;
+                }
             },
             error: function (resultat, statut, erreur) {
             },
             complete: function (resultat, statut) {
             }
         });
+        displayEsp(myData);
+        replaceData(myData);
     }
 
     //=== Installation de la periodicite des requetes GET=============
@@ -170,10 +205,24 @@ window.onload = function init() {
 
     var which_esps = ["80:7D:3A:FD:D7:78",
 		      "80:7D:3A:FD:C2:F0",
-              "80:7D:3A:FD:E8:E8",
               "30:AE:A4:8C:04:64"
             ]
     for (var i = 0; i < which_esps.length; i++) {
 	process_esp(which_esps, i)
     }
 };
+
+function displayEsp(data){
+    let table = '<table class="table"><thead><tr><th scope="col">Esp</th><th scope="col">Mac</th><th scope="col">Temp</th><th scope="col">Light</th><th scope="col">Ping</th></tr></thead><tbody>';
+    for(let i=0;i<data.length;i++){
+        table += '<tr>'+
+        '<th id="num'+i+'"> scope="row"></th>'+
+        '<td id="mac'+i+'"></td>'+
+        '<td id="temp'+i+'"></td>'+
+        '<td id="light'+i+'"></td>'+
+        '<td><button>ping</button></td>'+
+      '</tr>';
+    }
+    table += '</tbody></table>';
+    $('#toto').append(table);
+}
